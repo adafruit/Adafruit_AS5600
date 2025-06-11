@@ -1,0 +1,39 @@
+#######################################
+# Syntax Coloring Map For AS5600
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Adafruit_AS5600	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+AS5600_DEFAULT_ADDR	LITERAL1
+AS5600_REG_ZMCO	LITERAL1
+AS5600_REG_ZPOS_H	LITERAL1
+AS5600_REG_ZPOS_L	LITERAL1
+AS5600_REG_MPOS_H	LITERAL1
+AS5600_REG_MPOS_L	LITERAL1
+AS5600_REG_MANG_H	LITERAL1
+AS5600_REG_MANG_L	LITERAL1
+AS5600_REG_CONF_H	LITERAL1
+AS5600_REG_CONF_L	LITERAL1
+AS5600_REG_STATUS	LITERAL1
+AS5600_REG_RAWANGLE_H	LITERAL1
+AS5600_REG_RAWANGLE_L	LITERAL1
+AS5600_REG_ANGLE_H	LITERAL1
+AS5600_REG_ANGLE_L	LITERAL1
+AS5600_REG_AGC	LITERAL1
+AS5600_REG_MAGNITUDE_H	LITERAL1
+AS5600_REG_MAGNITUDE_L	LITERAL1
+AS5600_REG_BURN	LITERAL1
