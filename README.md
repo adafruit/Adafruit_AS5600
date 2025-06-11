@@ -1,4 +1,4 @@
-# Adafruit AS5600 Library [![Build Status](https://github.com/adafruit/Adafruit_AS5600/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_AS5600/actions) [![Documentation](https://github.com/adafruit/Adafruit_AS5600/workflows/Build%20CI/badge.svg)](https://adafruit.github.io/Adafruit_AS5600)
+# Adafruit AS5600 Library [![Build Status](https://github.com/adafruit/Adafruit_AS5600/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_AS5600/actions)[![Documentation](https://github.com/adafruit/ci-arduino/blob/master/assets/doxygen_badge.svg)](http://adafruit.github.io/Adafruit_AS5600/html/index.html)
 
 Arduino library for the AS5600 12-bit contactless magnetic rotary position sensor.
 
