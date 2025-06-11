@@ -46,7 +46,7 @@ Adafruit_AS5600::~Adafruit_AS5600() {
  * @param wire The Wire object to use for I2C communication
  * @return true if initialization was successful, false otherwise
  */
-bool Adafruit_AS5600::begin(uint8_t i2c_addr, TwoWire *wire) {
+bool Adafruit_AS5600::begin(uint8_t i2c_addr, TwoWire* wire) {
   i2c_dev = new Adafruit_I2CDevice(i2c_addr, wire);
 
   if (!i2c_dev->begin()) {
@@ -63,7 +63,7 @@ bool Adafruit_AS5600::begin(uint8_t i2c_addr, TwoWire *wire) {
 uint8_t Adafruit_AS5600::getZMCount() {
   Adafruit_BusIO_Register zmco_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_ZMCO, 1);
-  
+
   uint8_t zmco_value = zmco_reg.read();
   return zmco_value & 0x03; // Only bits 1:0 are used
 }
@@ -75,7 +75,7 @@ uint8_t Adafruit_AS5600::getZMCount() {
 uint16_t Adafruit_AS5600::getZPosition() {
   Adafruit_BusIO_Register zpos_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_ZPOS_H, 2, MSBFIRST);
-  
+
   uint16_t zpos_value = zpos_reg.read();
   return zpos_value & 0x0FFF; // Only 12 bits are used
 }
@@ -87,10 +87,10 @@ uint16_t Adafruit_AS5600::getZPosition() {
  */
 bool Adafruit_AS5600::setZPosition(uint16_t position) {
   position &= 0x0FFF; // Ensure only 12 bits are used
-  
+
   Adafruit_BusIO_Register zpos_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_ZPOS_H, 2, MSBFIRST);
-  
+
   return zpos_reg.write(position);
 }
 
@@ -101,7 +101,7 @@ bool Adafruit_AS5600::setZPosition(uint16_t position) {
 uint16_t Adafruit_AS5600::getMPosition() {
   Adafruit_BusIO_Register mpos_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_MPOS_H, 2, MSBFIRST);
-  
+
   uint16_t mpos_value = mpos_reg.read();
   return mpos_value & 0x0FFF; // Only 12 bits are used
 }
@@ -113,10 +113,10 @@ uint16_t Adafruit_AS5600::getMPosition() {
  */
 bool Adafruit_AS5600::setMPosition(uint16_t position) {
   position &= 0x0FFF; // Ensure only 12 bits are used
-  
+
   Adafruit_BusIO_Register mpos_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_MPOS_H, 2, MSBFIRST);
-  
+
   return mpos_reg.write(position);
 }
 
@@ -127,7 +127,7 @@ bool Adafruit_AS5600::setMPosition(uint16_t position) {
 uint16_t Adafruit_AS5600::getMaxAngle() {
   Adafruit_BusIO_Register mang_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_MANG_H, 2, MSBFIRST);
-  
+
   uint16_t mang_value = mang_reg.read();
   return mang_value & 0x0FFF; // Only 12 bits are used
 }
@@ -139,10 +139,10 @@ uint16_t Adafruit_AS5600::getMaxAngle() {
  */
 bool Adafruit_AS5600::setMaxAngle(uint16_t angle) {
   angle &= 0x0FFF; // Ensure only 12 bits are used
-  
+
   Adafruit_BusIO_Register mang_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_MANG_H, 2, MSBFIRST);
-  
+
   return mang_reg.write(angle);
 }
 
@@ -153,7 +153,7 @@ bool Adafruit_AS5600::setMaxAngle(uint16_t angle) {
 uint16_t Adafruit_AS5600::getRawAngle() {
   Adafruit_BusIO_Register rawangle_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_RAWANGLE_H, 2, MSBFIRST);
-  
+
   uint16_t rawangle_value = rawangle_reg.read();
   return rawangle_value & 0x0FFF; // Only 12 bits are used
 }
@@ -165,7 +165,7 @@ uint16_t Adafruit_AS5600::getRawAngle() {
 uint16_t Adafruit_AS5600::getAngle() {
   Adafruit_BusIO_Register angle_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_ANGLE_H, 2, MSBFIRST);
-  
+
   uint16_t angle_value = angle_reg.read();
   return angle_value & 0x0FFF; // Only 12 bits are used
 }
@@ -179,7 +179,7 @@ bool Adafruit_AS5600::isAGCminGainOverflow() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_STATUS, 1);
   Adafruit_BusIO_RegisterBits mh_bit =
       Adafruit_BusIO_RegisterBits(&status_reg, 1, 3);
-  
+
   return mh_bit.read();
 }
 
@@ -192,7 +192,7 @@ bool Adafruit_AS5600::isAGCmaxGainOverflow() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_STATUS, 1);
   Adafruit_BusIO_RegisterBits ml_bit =
       Adafruit_BusIO_RegisterBits(&status_reg, 1, 4);
-  
+
   return ml_bit.read();
 }
 
@@ -205,7 +205,7 @@ bool Adafruit_AS5600::isMagnetDetected() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_STATUS, 1);
   Adafruit_BusIO_RegisterBits md_bit =
       Adafruit_BusIO_RegisterBits(&status_reg, 1, 5);
-  
+
   return md_bit.read();
 }
 
@@ -216,7 +216,7 @@ bool Adafruit_AS5600::isMagnetDetected() {
 uint8_t Adafruit_AS5600::getAGC() {
   Adafruit_BusIO_Register agc_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_AGC, 1);
-  
+
   return agc_reg.read();
 }
 
@@ -227,7 +227,7 @@ uint8_t Adafruit_AS5600::getAGC() {
 uint16_t Adafruit_AS5600::getMagnitude() {
   Adafruit_BusIO_Register magnitude_reg =
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_MAGNITUDE_H, 2, MSBFIRST);
-  
+
   uint16_t magnitude_value = magnitude_reg.read();
   return magnitude_value & 0x0FFF; // Only 12 bits are used
 }
@@ -242,7 +242,7 @@ bool Adafruit_AS5600::enableWatchdog(bool enable) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_H, 2, MSBFIRST);
   Adafruit_BusIO_RegisterBits wd_bit =
       Adafruit_BusIO_RegisterBits(&conf_reg, 1, 13);
-  
+
   return wd_bit.write(enable ? 1 : 0);
 }
 
@@ -255,7 +255,7 @@ bool Adafruit_AS5600::getWatchdog() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_H, 2, MSBFIRST);
   Adafruit_BusIO_RegisterBits wd_bit =
       Adafruit_BusIO_RegisterBits(&conf_reg, 1, 13);
-  
+
   return wd_bit.read();
 }
 
@@ -269,7 +269,7 @@ bool Adafruit_AS5600::setPowerMode(as5600_power_mode_t mode) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits pm_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 0);
-  
+
   return pm_bits.write((uint8_t)mode);
 }
 
@@ -282,7 +282,7 @@ as5600_power_mode_t Adafruit_AS5600::getPowerMode() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits pm_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 0);
-  
+
   return (as5600_power_mode_t)pm_bits.read();
 }
 
@@ -296,7 +296,7 @@ bool Adafruit_AS5600::setHysteresis(as5600_hysteresis_t hysteresis) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits hyst_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 2);
-  
+
   return hyst_bits.write((uint8_t)hysteresis);
 }
 
@@ -309,13 +309,14 @@ as5600_hysteresis_t Adafruit_AS5600::getHysteresis() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits hyst_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 2);
-  
+
   return (as5600_hysteresis_t)hyst_bits.read();
 }
 
 /*!
  * @brief Set output stage configuration
- * @param output Output stage to set (ANALOG_FULL, ANALOG_REDUCED, DIGITAL_PWM, RESERVED)
+ * @param output Output stage to set (ANALOG_FULL, ANALOG_REDUCED, DIGITAL_PWM,
+ * RESERVED)
  * @return true if write was successful, false otherwise
  */
 bool Adafruit_AS5600::setOutputStage(as5600_output_stage_t output) {
@@ -323,7 +324,7 @@ bool Adafruit_AS5600::setOutputStage(as5600_output_stage_t output) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits outs_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 4);
-  
+
   return outs_bits.write((uint8_t)output);
 }
 
@@ -336,7 +337,7 @@ as5600_output_stage_t Adafruit_AS5600::getOutputStage() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits outs_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 4);
-  
+
   return (as5600_output_stage_t)outs_bits.read();
 }
 
@@ -350,7 +351,7 @@ bool Adafruit_AS5600::setPWMFreq(as5600_pwm_freq_t freq) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits pwmf_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 6);
-  
+
   return pwmf_bits.write((uint8_t)freq);
 }
 
@@ -363,7 +364,7 @@ as5600_pwm_freq_t Adafruit_AS5600::getPWMFreq() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_L, 1);
   Adafruit_BusIO_RegisterBits pwmf_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 6);
-  
+
   return (as5600_pwm_freq_t)pwmf_bits.read();
 }
 
@@ -377,7 +378,7 @@ bool Adafruit_AS5600::setSlowFilter(as5600_slow_filter_t filter) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_H, 1);
   Adafruit_BusIO_RegisterBits sf_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 0);
-  
+
   return sf_bits.write((uint8_t)filter);
 }
 
@@ -390,7 +391,7 @@ as5600_slow_filter_t Adafruit_AS5600::getSlowFilter() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_H, 1);
   Adafruit_BusIO_RegisterBits sf_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 2, 0);
-  
+
   return (as5600_slow_filter_t)sf_bits.read();
 }
 
@@ -404,7 +405,7 @@ bool Adafruit_AS5600::setFastFilterThresh(as5600_fast_filter_thresh_t thresh) {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_H, 1);
   Adafruit_BusIO_RegisterBits fth_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 3, 2);
-  
+
   return fth_bits.write((uint8_t)thresh);
 }
 
@@ -417,6 +418,6 @@ as5600_fast_filter_thresh_t Adafruit_AS5600::getFastFilterThresh() {
       Adafruit_BusIO_Register(i2c_dev, AS5600_REG_CONF_H, 1);
   Adafruit_BusIO_RegisterBits fth_bits =
       Adafruit_BusIO_RegisterBits(&conf_reg, 3, 2);
-  
+
   return (as5600_fast_filter_thresh_t)fth_bits.read();
 }

@@ -13,30 +13,32 @@ Adafruit_AS5600 as5600;
 
 void setup() {
   Serial.begin(115200);
-  while (!Serial) delay(10);
+  while (!Serial)
+    delay(10);
 
   Serial.println("Adafruit AS5600 Basic Test");
 
   if (!as5600.begin()) {
     Serial.println("Could not find AS5600 sensor, check wiring!");
-    while (1) delay(10);
+    while (1)
+      delay(10);
   }
 
   Serial.println("AS5600 found!");
-  
+
   // Test getZMCount function
   uint8_t zmCount = as5600.getZMCount();
   Serial.print("ZM Count (burn count): ");
   Serial.println(zmCount);
-  
+
   // Test getZPosition function
   uint16_t zPos = as5600.getZPosition();
   Serial.print("Z Position: ");
   Serial.println(zPos);
-  
+
   // Test setZPosition function (XOR current value with 0xADA to change it)
   uint16_t testPos = zPos ^ 0xADA; // XOR with 0xADA to get different value
-  testPos &= 0x0FFF; // Keep within 12-bit range
+  testPos &= 0x0FFF;               // Keep within 12-bit range
   Serial.print("Setting Z Position to ");
   Serial.print(testPos);
   Serial.print(" (0x");
@@ -53,12 +55,12 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test getMPosition function
   uint16_t mPos = as5600.getMPosition();
   Serial.print("M Position: ");
   Serial.println(mPos);
-  
+
   // Test setMPosition function (XOR current value with 0xBEE)
   uint16_t testMPos = mPos ^ 0xBEE;
   testMPos &= 0x0FFF;
@@ -78,12 +80,12 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test getMaxAngle function
   uint16_t maxAngle = as5600.getMaxAngle();
   Serial.print("Max Angle: ");
   Serial.println(maxAngle);
-  
+
   // Test setMaxAngle function (XOR current value with 0xCAB)
   uint16_t testMaxAngle = maxAngle ^ 0xCAB;
   testMaxAngle &= 0x0FFF;
@@ -103,7 +105,7 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test watchdog functions
   Serial.print("Enabling watchdog... ");
   if (as5600.enableWatchdog(true)) {
@@ -113,7 +115,7 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   Serial.print("Disabling watchdog... ");
   if (as5600.enableWatchdog(false)) {
     Serial.println("Success");
@@ -122,9 +124,11 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test power mode functions
-  Serial.print("Setting power mode to Normal (options: NOM=0, LPM1=1, LPM2=2, LPM3=3)... ");
+  Serial.print(
+      "Setting power mode to Normal (options: NOM=0, LPM1=1, LPM2=2, "
+      "LPM3=3)... ");
   if (as5600.setPowerMode(AS5600_POWER_MODE_NOM)) {
     Serial.println("Success");
     as5600_power_mode_t mode = as5600.getPowerMode();
@@ -146,9 +150,10 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test hysteresis functions
-  Serial.print("Setting hysteresis to OFF (options: OFF=0, 1LSB=1, 2LSB=2, 3LSB=3)... ");
+  Serial.print(
+      "Setting hysteresis to OFF (options: OFF=0, 1LSB=1, 2LSB=2, 3LSB=3)... ");
   if (as5600.setHysteresis(AS5600_HYSTERESIS_OFF)) {
     Serial.println("Success");
     as5600_hysteresis_t hysteresis = as5600.getHysteresis();
@@ -170,9 +175,11 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test output stage functions
-  Serial.print("Setting output stage to Analog Full (options: ANALOG_FULL=0, ANALOG_REDUCED=1, DIGITAL_PWM=2, RESERVED=3)... ");
+  Serial.print(
+      "Setting output stage to Analog Full (options: ANALOG_FULL=0, "
+      "ANALOG_REDUCED=1, DIGITAL_PWM=2, RESERVED=3)... ");
   if (as5600.setOutputStage(AS5600_OUTPUT_STAGE_ANALOG_FULL)) {
     Serial.println("Success");
     as5600_output_stage_t outputStage = as5600.getOutputStage();
@@ -194,9 +201,11 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test PWM frequency functions
-  Serial.print("Setting PWM frequency to 115Hz (options: 115HZ=0, 230HZ=1, 460HZ=2, 920HZ=3)... ");
+  Serial.print(
+      "Setting PWM frequency to 115Hz (options: 115HZ=0, 230HZ=1, 460HZ=2, "
+      "920HZ=3)... ");
   if (as5600.setPWMFreq(AS5600_PWM_FREQ_115HZ)) {
     Serial.println("Success");
     as5600_pwm_freq_t pwmFreq = as5600.getPWMFreq();
@@ -218,9 +227,10 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test slow filter functions
-  Serial.print("Setting slow filter to 16x (options: 16X=0, 8X=1, 4X=2, 2X=3)... ");
+  Serial.print(
+      "Setting slow filter to 16x (options: 16X=0, 8X=1, 4X=2, 2X=3)... ");
   if (as5600.setSlowFilter(AS5600_SLOW_FILTER_16X)) {
     Serial.println("Success");
     as5600_slow_filter_t slowFilter = as5600.getSlowFilter();
@@ -242,9 +252,11 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Test fast filter threshold functions
-  Serial.print("Setting fast filter threshold to Slow Only (options: SLOW_ONLY=0, 6LSB=1, 7LSB=2, 9LSB=3, 18LSB=4, 21LSB=5, 24LSB=6, 10LSB=7)... ");
+  Serial.print(
+      "Setting fast filter threshold to Slow Only (options: SLOW_ONLY=0, "
+      "6LSB=1, 7LSB=2, 9LSB=3, 18LSB=4, 21LSB=5, 24LSB=6, 10LSB=7)... ");
   if (as5600.setFastFilterThresh(AS5600_FAST_FILTER_THRESH_SLOW_ONLY)) {
     Serial.println("Success");
     as5600_fast_filter_thresh_t fastThresh = as5600.getFastFilterThresh();
@@ -278,19 +290,18 @@ void setup() {
   } else {
     Serial.println("Failed");
   }
-  
+
   // Reset position settings to defaults
   as5600.setZPosition(0);
   as5600.setMPosition(4095);
   as5600.setMaxAngle(4095);
-  
 }
 
 void loop() {
   // Continuously read and display angle values
   uint16_t rawAngle = as5600.getRawAngle();
   uint16_t angle = as5600.getAngle();
-  
+
   Serial.print("Raw: ");
   Serial.print(rawAngle);
   Serial.print(" (0x");
@@ -300,7 +311,7 @@ void loop() {
   Serial.print(" (0x");
   Serial.print(angle, HEX);
   Serial.print(")");
-  
+
   // Check status conditions
   if (as5600.isMagnetDetected()) {
     Serial.print(" | Magnet: YES");
@@ -311,7 +322,7 @@ void loop() {
   if (as5600.isAGCmaxGainOverflow()) {
     Serial.print(" | ML: magnet too weak");
   }
-  
+
   // Get AGC and Magnitude values
   uint8_t agc = as5600.getAGC();
   uint16_t magnitude = as5600.getMagnitude();
@@ -319,7 +330,7 @@ void loop() {
   Serial.print(agc);
   Serial.print(" | Mag: ");
   Serial.print(magnitude);
-  
+
   Serial.println();
   delay(250);
 }
