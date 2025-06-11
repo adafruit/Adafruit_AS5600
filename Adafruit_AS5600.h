@@ -3,8 +3,6 @@
  *
  * This is the documentation for Adafruit's AS5600 library
  *
- * @section license License
- *
  * Written by Limor Fried for Adafruit Industries.
  *
  * MIT license, all text above must be included in any redistribution
@@ -18,26 +16,27 @@
 
 #include "Arduino.h"
 
-#define AS5600_DEFAULT_ADDR 0x36
+#define AS5600_DEFAULT_ADDR 0x36 ///< Default I2C address for AS5600
 
-#define AS5600_REG_ZMCO 0x00
-#define AS5600_REG_ZPOS_H 0x01
-#define AS5600_REG_ZPOS_L 0x02
-#define AS5600_REG_MPOS_H 0x03
-#define AS5600_REG_MPOS_L 0x04
-#define AS5600_REG_MANG_H 0x05
-#define AS5600_REG_MANG_L 0x06
-#define AS5600_REG_CONF_H 0x07
-#define AS5600_REG_CONF_L 0x08
-#define AS5600_REG_STATUS 0x0B
-#define AS5600_REG_RAWANGLE_H 0x0C
-#define AS5600_REG_RAWANGLE_L 0x0D
-#define AS5600_REG_ANGLE_H 0x0E
-#define AS5600_REG_ANGLE_L 0x0F
-#define AS5600_REG_AGC 0x1A
-#define AS5600_REG_MAGNITUDE_H 0x1B
-#define AS5600_REG_MAGNITUDE_L 0x1C
-#define AS5600_REG_BURN 0xFF
+// Register addresses
+#define AS5600_REG_ZMCO 0x00        ///< ZMCO register (burn count)
+#define AS5600_REG_ZPOS_H 0x01      ///< Zero position high byte
+#define AS5600_REG_ZPOS_L 0x02      ///< Zero position low byte
+#define AS5600_REG_MPOS_H 0x03      ///< Maximum position high byte
+#define AS5600_REG_MPOS_L 0x04      ///< Maximum position low byte
+#define AS5600_REG_MANG_H 0x05      ///< Maximum angle high byte
+#define AS5600_REG_MANG_L 0x06      ///< Maximum angle low byte
+#define AS5600_REG_CONF_H 0x07      ///< Configuration register high byte
+#define AS5600_REG_CONF_L 0x08      ///< Configuration register low byte
+#define AS5600_REG_STATUS 0x0B      ///< Status register
+#define AS5600_REG_RAWANGLE_H 0x0C  ///< Raw angle high byte
+#define AS5600_REG_RAWANGLE_L 0x0D  ///< Raw angle low byte
+#define AS5600_REG_ANGLE_H 0x0E     ///< Scaled angle high byte
+#define AS5600_REG_ANGLE_L 0x0F     ///< Scaled angle low byte
+#define AS5600_REG_AGC 0x1A         ///< Automatic Gain Control register
+#define AS5600_REG_MAGNITUDE_H 0x1B ///< Magnitude high byte
+#define AS5600_REG_MAGNITUDE_L 0x1C ///< Magnitude low byte
+#define AS5600_REG_BURN 0xFF        ///< Burn command register
 
 /*!
  * @brief Power mode settings for AS5600
