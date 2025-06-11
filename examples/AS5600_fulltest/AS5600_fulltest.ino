@@ -1,7 +1,7 @@
 /*!
- * @file AS5600_basic.ino
+ * @file AS5600_fulltest.ino
  *
- * Basic example for the Adafruit AS5600 library
+ * Full library testing example for the Adafruit AS5600 library
  *
  * Written by Limor Fried for Adafruit Industries.
  * MIT license, all text above must be included in any redistribution
@@ -16,7 +16,7 @@ void setup() {
   while (!Serial)
     delay(10);
 
-  Serial.println("Adafruit AS5600 Basic Test");
+  Serial.println("Adafruit AS5600 Full Test");
 
   if (!as5600.begin()) {
     Serial.println("Could not find AS5600 sensor, check wiring!");
